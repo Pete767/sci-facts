@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Sources</h1>
+
+  <form method="post" action="{{ url_for('sources') }}">
+    <label for="source_type">Filter by Source Type:</label>
+    <select name="source_type" id="source_type">
+      <option value="">All</option>
+      <option value="movie" {% if source_type_filter == 'movie' %}selected{% endif %}>Movies</option>
+      <option value="game" {% if source_type_filter == 'game' %}selected{% endif %}>Games</option>
+      <option value="tv" {% if source_type_filter == 'tv' %}selected{% endif %}>TV</option>
+      <option value="book" {% if source_type_filter == 'book' %}selected{% endif %}>Book</option>
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+
+  {% if sources %}
+    <ul>
+      {% for source in sources %}
+        <li>{{ source.source_name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No sources found.</p>
+  {% endif %}
+{% endblock %}

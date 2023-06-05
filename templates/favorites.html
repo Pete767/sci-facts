@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Favorites</h1>
+
+  {% if user.favorites %}
+    <ul>
+      {% for source in user.favorites %}
+        <li>{{ source.source_name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No favorites found.</p>
+  {% endif %}
+{% endblock %}

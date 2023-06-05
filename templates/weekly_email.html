@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekly Quotes and Facts</title>
+</head>
+<body>
+    <h1>Your Weekly Quotes and Facts</h1>
+
+    <h2>Quotes</h2>
+    <ul>
+        {% for quote in quotes %}
+            <li>{{ quote.quote }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Facts</h2>
+    <ul>
+        {% for fact in facts %}
+            <li>{{ fact.fact }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>To unsubscribe from the weekly email, click <a href="{{ url_for('unsubscribe') }}">here</a>.</p>
+</body>
+</html>
+

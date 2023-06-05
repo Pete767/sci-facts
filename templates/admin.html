@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Admin Page</h1>
+
+  <h2>Pending Submissions</h2>
+
+  {% if submissions %}
+    <ul>
+      {% for submission in submissions %}
+        <li>
+          <p><strong>Source:</strong> {{ submission.source }}</p>
+          <p><strong>Body:</strong> {{ submission.body }}</p>
+          <form method="POST" action="{{ url_for('process_submission', submission_id=submission.id) }}">
+            <input type="submit" name="approve" value="Approve">
+            <input type="submit" name="deny" value="Deny">
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No pending submissions.</p>
+  {% endif %}
+{% endblock %}

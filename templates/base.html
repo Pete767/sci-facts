@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            {% if current_user.is_authenticated %}
+                {% if current_user.admin %}
+                    <li><a href="/admin">Admin</a></li>
+                {% endif %}
+                <li><a href="/logout">Logout</a></li>
+            {% else %}
+                {% if not current_user.is_authenticated %}
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+            <li><a href="/favorites">Admin</a></li>
+            <li><a href="/sources">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

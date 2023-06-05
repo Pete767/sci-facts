@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Home</h1>
+
+  <h2>Random Quotes</h2>
+  <ul>
+    {% for quote in quotes %}
+      <li>{{ quote.quote }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Random Facts</h2>
+  <ul>
+    {% for fact in facts %}
+      <li>{{ fact.fact }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
