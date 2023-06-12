@@ -1,3 +1,5 @@
+/* this file no longer relavent. is kept to see what i started with.*/
+
 CREATE DATABASE sci_facts;
 
 \c sci_facts

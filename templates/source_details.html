@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ source.source_name }} Details</h1>
+    <h2>Facts:</h2>
+    <ul>
+        {% for fact in facts %}
+            <li>{{ fact.fact }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Quotes:</h2>
+    <ul>
+        {% for quote in quotes %}
+            <li>{{ quote.quote }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

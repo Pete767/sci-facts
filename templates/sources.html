@@ -1,27 +1,56 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <h1>Sources</h1>
+{% block page_content %}
+  <h1 class="display-4">Sources</h1>
 
   <form method="post" action="{{ url_for('sources') }}">
     <label for="source_type">Filter by Source Type:</label>
-    <select name="source_type" id="source_type">
+    <select class="form_control" name="source_type" id="source_type">
       <option value="">All</option>
       <option value="movie" {% if source_type_filter == 'movie' %}selected{% endif %}>Movies</option>
       <option value="game" {% if source_type_filter == 'game' %}selected{% endif %}>Games</option>
       <option value="tv" {% if source_type_filter == 'tv' %}selected{% endif %}>TV</option>
       <option value="book" {% if source_type_filter == 'book' %}selected{% endif %}>Book</option>
     </select>
-    <button type="submit">Filter</button>
+    <button class="btn btn-primary" type="submit">Filter</button>
   </form>
 
   {% if sources %}
     <ul>
       {% for source in sources %}
-        <li>{{ source.source_name }}</li>
+      <li>
+        <a href="{{ url_for('source_details', source_id=source.id) }}">{{ source.source_name }}</a>
+        {% if current_user.is_authenticated %}
+          <form method="POST" class="favorite-form">
+            <label class="checkbox-container">
+              <input type="checkbox" {% if source in current_user.favorites %}checked{% endif %} onchange="toggleFavorite(this, {{ source.id }})">
+              <span class="checkmark"></span>
+            </label>
+            <button type="submit" class="btn btn-link"></button>
+          </form>
+        {% endif %}
+      </li>
       {% endfor %}
     </ul>
   {% else %}
     <p>No sources found.</p>
   {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    function toggleFavorite(checkbox, sourceId) {
+      var form = checkbox.parentNode.parentNode;
+      var favoriteButton = form.querySelector('button[type="submit"]');
+      
+      if (checkbox.checked) {
+        favoriteButton.innerHTML = 'Unfavorite';
+        form.action = '/add_favorites/' + sourceId;
+      } else {
+        favoriteButton.innerHTML = 'Favorite';
+        form.action = '/unfavorite/' + sourceId;
+      }
+    }
+  </script>
 {% endblock %}

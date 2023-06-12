@@ -1,29 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %}My Website{% endblock %}</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar" id="topnav">
+        <ul id="nav-ul">
+            <li id=nav-link class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            {% if current_user.admin %}
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+            {% endif %}
             {% if current_user.is_authenticated %}
-                {% if current_user.admin %}
-                    <li><a href="/admin">Admin</a></li>
-                {% endif %}
-                <li><a href="/logout">Logout</a></li>
+                <li id=nav-link class="nav-item">
+                    {% if current_user.email_subscription %}
+                        <form class="form-inline" method="POST" action="/unsubscribe" onsubmit="return confirm('Are you sure you want to unsubscribe?')">
+                            {{ search_form.hidden_tag() }}
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Unsubscribe</button>
+                        </form>
+                    {% else %}
+                        <form class="form-inline" method="POST" action="/subscribe" onsubmit="return confirm('Are you sure you want to subscribe?')">
+                            {{ search_form.hidden_tag() }}
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Subscribe</button>
+                        </form>
+                    {% endif %}
+                </li>
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/favorites">Favorites</a></li>
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/submit">Submit New</a></li>
             {% else %}
-                {% if not current_user.is_authenticated %}
-                    <li><a href="/login">Login</a></li>
-                {% endif %}
-            <li><a href="/favorites">Admin</a></li>
-            <li><a href="/sources">Login</a></li>
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li id=nav-link class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+            {% endif %}
+            <li id=nav-link class="nav-item"><a class="nav-link" href="/sources">Sources</a></li>
+            <li id=nav-link class="nav-item">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="/search">
+                    {{ search_form.hidden_tag() }}
+                    <input id="search-bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
         </ul>
     </nav>
+{% endblock %}
 
+{% block content %}
     <div class="content">
-        {% block content %}
+        {% block page_content %}
         {% endblock %}
     </div>
-</body>
-</html>
+
+{% endblock %}
+

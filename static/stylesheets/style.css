@@ -1,0 +1,158 @@
+h1.display-4 {
+    font-size: 2.5rem;
+  }
+  
+  strong.font-weight-bold {
+    font-weight: bold;
+  }
+  
+  div.text-primary {
+    color: var(--primary);
+  }
+  
+  div.bg-dark.text-light {
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  
+  button.btn.btn-primary {
+    background-color: rgb(139, 208, 235);
+    color: var(--light);
+  }
+  
+  input.form-control {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+    background-color: white;
+    border: 1px solid var(--dark);
+    border-radius: 0.25rem;
+
+  }
+  
+  div.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  div.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  div.col {
+    flex: 1;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  div.mt-4 {
+    margin-top: 1rem;
+  }
+  
+  a.nav-link.active {
+    font-weight: bold;
+  }
+  
+  div.card.bg-primary.text-white {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+  
+  div.d-none.d-md-block {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    div.d-none.d-md-block {
+      display: block;
+    }
+  }
+  
+#topnav.navbar {
+    background-color: rgba(165, 160, 150, 0.627);
+    border: 2px rgba(28,110,164,0.21) solid;
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-link {
+  color: black;
+  display: inline-block;
+  border-right: 1px solid #bbb;
+  margin: 1px;
+  padding: 10px 30px;
+}
+
+#nav-link:last-child {
+  border-right: none;
+}
+
+#nav-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: black
+}
+
+#search-bar {
+  background-color: rgb(255, 255, 255);
+}
+
+#username {
+  border: 1px;
+  border-radius: 4px;
+  background-color: white;
+  width: 40%;
+}
+
+#password {
+  border: 1px;
+  border-radius: 4px;
+  background-color: white;
+  width: 40%;
+}
+
+body {
+  background-color: #bbb;
+}
+
+#email {
+  border: 1px;
+  border-radius: 4px;
+  background-color: white;
+  width: 40%;
+}
+
+#source {
+  background-color: white;
+  width: 40%;
+}
+
+#body {
+  background-color: white;
+  width: 40%;
+}
+
+#source_type {
+  background-color: white;
+  width: 40%;
+}
+
+#quote_or_fact {
+  background-color: white;
+  width: 40%;
+}
+
+

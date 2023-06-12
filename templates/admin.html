@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <h1>Admin Page</h1>
+{% block page_content %}
+  <h1 class="display-4">Admin Page</h1>
 
   <h2>Pending Submissions</h2>
 
@@ -12,8 +12,8 @@
           <p><strong>Source:</strong> {{ submission.source }}</p>
           <p><strong>Body:</strong> {{ submission.body }}</p>
           <form method="POST" action="{{ url_for('process_submission', submission_id=submission.id) }}">
-            <input type="submit" name="approve" value="Approve">
-            <input type="submit" name="deny" value="Deny">
+            <input class="btn btn-primary" type="submit" name="approve" value="Approve">
+            <input class="btn btn-primary" type="submit" name="deny" value="Deny">
           </form>
         </li>
       {% endfor %}
