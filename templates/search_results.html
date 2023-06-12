@@ -5,9 +5,30 @@
   <h2>Results</h2>
   <ul>
     {% for source in similar_sources %}
-      <li><a href="{{ url_for('source_details', source_id=source.id) }}">{{ source.source_name }}</a></li>
+      <li>
+        <a href="{{ url_for('source_details', source_id=source.id) }}">{{ source.source_name }}</a>
+        {% if current_user.is_authenticated %}
+        <input type="checkbox" class="favorite-checkbox" data-source-id="{{ source.id }}" {% if source in current_user.favorites %}checked{% endif %}>
+        {% endif %}
+    </li>
     {% endfor %}
   </ul>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.favorite-checkbox').on('change', function() {
+        var sourceId = $(this).data('source-id');
+        var isChecked = $(this).is(':checked');
 
+        $.post('/toggle_favorite/' + sourceId, function(data) {
+          if (data.action === 'add') {
+            // Handle addition to favorites
+          } else if (data.action === 'remove') {
+            // Handle removal from favorites
+          }
+        });
+      });
+    });
+  </script>
 
 {% endblock %}

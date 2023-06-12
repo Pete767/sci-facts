@@ -21,12 +21,7 @@
       <li>
         <a href="{{ url_for('source_details', source_id=source.id) }}">{{ source.source_name }}</a>
         {% if current_user.is_authenticated %}
-          <form method="POST" class="favorite-form">
-            <label class="checkbox-container">
-              <input type="checkbox" {% if source in current_user.favorites %}checked{% endif %} onchange="toggleFavorite(this, {{ source.id }})">
-              <span class="checkmark"></span>
-            </label>
-            <button type="submit" class="btn btn-link"></button>
+            <input type="checkbox" class="favorite-checkbox" data-source-id="{{ source.id }}" {% if source in current_user.favorites %}checked{% endif %}>
           </form>
         {% endif %}
       </li>
@@ -39,18 +34,21 @@
 
 {% block scripts %}
   {{ super() }}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    function toggleFavorite(checkbox, sourceId) {
-      var form = checkbox.parentNode.parentNode;
-      var favoriteButton = form.querySelector('button[type="submit"]');
-      
-      if (checkbox.checked) {
-        favoriteButton.innerHTML = 'Unfavorite';
-        form.action = '/add_favorites/' + sourceId;
-      } else {
-        favoriteButton.innerHTML = 'Favorite';
-        form.action = '/unfavorite/' + sourceId;
-      }
-    }
+    $(document).ready(function() {
+      $('.favorite-checkbox').on('change', function() {
+        var sourceId = $(this).data('source-id');
+        var isChecked = $(this).is(':checked');
+
+        $.post('/toggle_favorite/' + sourceId, function(data) {
+          if (data.action === 'add') {
+            // Handle addition to favorites
+          } else if (data.action === 'remove') {
+            // Handle removal from favorites
+          }
+        });
+      });
+    });
   </script>
 {% endblock %}

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, flash, session
+from flask import Flask, request, render_template, redirect, flash, session, url_for, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, SignUpForm, SubmissionForm, SearchForm
@@ -186,6 +186,22 @@ def favorites():
     search_form = SearchForm()
 
     return render_template('favorites.html', user=user, search_form = search_form, sources=favorite_sources)
+
+@app.route('/toggle_favorite/<int:source_id>', methods=['POST'])
+@login_required
+def toggle_favorite(source_id):
+    source = Source.query.get_or_404(source_id)
+
+    if source in current_user.favorites:
+        current_user.favorites.remove(source)
+        action = 'remove'
+    else:
+        current_user.favorites.append(source)
+        action = 'add'
+
+    db.session.commit()
+
+    return jsonify({'action': action})
 
 @app.route('/submit', methods=['GET', 'POST'])
 @login_required
