@@ -1,0 +1,3 @@
+This app is a website where users can add quotes and facts to thier favorite SciFi titles. This was made as my first Capstone project for my Springboard Software Engeneering Certificate and uses Flask, Python, HTML, SQL, Postgres and CSS to create, view and edit this website and its database.
+This app includes features to add quotes/facts to pre populated titles seperated into Books, TV, Movies and Games. There is also an option to submit new titles for review, both the new titles and new quotes/facts are added to a list for review by an Admin who can then approve or deny the submition and if approved it would be ammended to the db.
+Users also have the ability to add titles to their favorites list provided they have signed up and are logged into an account. 
