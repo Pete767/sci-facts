@@ -22,12 +22,3 @@ Adding quotes and facts involves interacting with forms and submitting data to t
 Admin Panel:
 The admin panel provides tools to view, approve, or deny submissions.
 Admins can also edit titles, quotes, and facts, ensuring data accuracy and quality.
-***Search and Sorting:
-Users can search for titles and content using SQL queries with features like filtering by category, sorting by date, or keyword-based search.
-***Data Validation and Sanitization:
-Input data is carefully validated and sanitized on both the client and server sides to prevent malicious input and maintain data integrity.
-***Security Measures:
-Implement security mechanisms, such as input validation, authentication, and authorization, to protect against SQL injection, XSS, and other common web vulnerabilities.
-***API Integration (Optional):
-If desired, you can create a RESTful API for external access to your app's data, enabling potential integration with other services or platforms. 
-In summary, Sci-Facts is a web application built on Flask, utilizing a PostgreSQL database, and incorporating a range of technical features to facilitate user interaction, data management, and content review within the realm of SciFi titles and related information.
